@@ -1,0 +1,24 @@
+@* @using Microsoft.AspNetCore.Components.Authorization
+@inject Supabase.Client SupabaseClient
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<button class="btn btn-danger" @onclick="HandleLogout">Logout</button>
+
+@code {
+    private async Task HandleLogout()
+    {
+        try
+        {
+            await SupabaseClient.Auth.SignOut();
+             // Notify the authentication state provider of the successful login
+            ((CustomAuthStateProvider)AuthenticationStateProvider).NotifyUserLogout();
+            NavigationManager.NavigateTo("/login");
+        }
+        catch (Exception ex)
+        {
+            // Handle errors or notify the user
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+} *@

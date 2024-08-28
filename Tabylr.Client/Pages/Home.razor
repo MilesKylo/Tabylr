@@ -1,0 +1,72 @@
+﻿@page "/"
+
+<h2>Recent Comments</h2>
+
+@if (talks == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="comment-list">
+        @foreach (var talk in talks)
+        {
+            <div class="talk">
+                <p>@talk.Content</p>
+                <small>Commented by @talk.ProfileId on @talk.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy HH:mm")</small>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Talk> talks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    
+    public class Talk 
+    {
+        
+        public int Id { get; set; }
+
+        
+        public string Content { get; set; }
+
+        
+        public string ProfileId { get; set; }
+
+        
+        public DateTime CreatedAt { get; set; }
+
+        
+        public int BookId { get; set; }
+    }
+}
+
+<style>
+    .comment-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .comment {
+        border: 1px solid #e1e8ed;
+        border-radius: 8px;
+        padding: 12px;
+        background-color: #ffffff;
+    }
+
+    .comment p {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .comment small {
+        color: #657786;
+    }
+</style>

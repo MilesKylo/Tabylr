@@ -1,0 +1,28 @@
+﻿
+[
+  {
+    "id": 1,
+    "name": "Jane Austen",
+    "description": "English novelist known for her romantic fiction set among the landed gentry"
+  },
+  {
+    "id": 2,
+    "name": "George Orwell",
+    "description": "English novelist, essayist, and critic, best known for his dystopian novel '1984'"
+  },
+  {
+    "id": 3,
+    "name": "Gabriel García Márquez",
+    "description": "Colombian novelist, short-story writer, and journalist, known for his magical realism"
+  },
+  {
+    "id": 4,
+    "name": "Virginia Woolf",
+    "description": "English writer, considered one of the most important modernist 20th-century authors"
+  },
+  {
+    "id": 5,
+    "name": "Haruki Murakami",
+    "description": "Japanese writer, his works are characterized by a blend of magical realism and pop culture"
+  }
+]

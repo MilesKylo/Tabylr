@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "updated_at": "2023-05-15T10:30:00Z",
+    "username": "johndoe",
+    "full_name": "John Doe",
+    "avatar_url": "https://example.com/avatars/johndoe.jpg"
+  },
+  {
+    "id": 2,
+    "updated_at": "2023-05-14T15:45:00Z",
+    "username": "janedoe",
+    "full_name": "Jane Doe",
+    "avatar_url": "https://example.com/avatars/janedoe.jpg"
+  },
+  {
+    "id": 3,
+    "updated_at": "2023-05-13T09:15:00Z",
+    "username": "bobsmith",
+    "full_name": "Bob Smith",
+    "avatar_url": "https://example.com/avatars/bobsmith.jpg"
+  },
+  {
+    "id": 4,
+    "updated_at": "2023-05-12T14:20:00Z",
+    "username": "alicejohnson",
+    "full_name": "Alice Johnson",
+    "avatar_url": "https://example.com/avatars/alicejohnson.jpg"
+  },
+  {
+    "id": 5,
+    "updated_at": "2023-05-11T11:00:00Z",
+    "username": "charliebrwn",
+    "full_name": "Charlie Brown",
+    "avatar_url": "https://example.com/avatars/charliebrwn.jpg"
+  }
+]

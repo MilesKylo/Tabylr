@@ -1,0 +1,66 @@
+﻿@* @inject Supabase.Client SupabaseClient
+@using Supabase.Postgrest.Attributes;
+@using Supabase.Postgrest.Models;
+
+@page "/books"
+
+Book page
+
+@if (books == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var book in books)
+        {
+            <li>
+                <strong>@book.Name</strong>: @book.Description
+                <small>(@book.CreatedAt.ToLocalTime())</small>
+            </li>
+        }
+    </ul>
+}
+
+
+
+@code {
+    private List<Book> books;
+
+    protected override async Task OnInitializedAsync() {
+        var results = await SupabaseClient.From<Book>().Get();
+        
+        if(results.Models.Count > 0) {
+            books = results.Models;
+        }
+    }
+
+
+    [Table("books")]
+    public class Book : BaseModel
+    {
+        [PrimaryKey("id")]
+        public int Id { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+        [Column("author_id")]
+        public int AuthorId { get; set; }
+        [Column("topic_id")]
+        public int TopicId { get; set; }
+        [Column("publisher_id")]
+        public int PublisherId { get; set; }
+        [Column("language_id")]
+        public int LanguageId { get; set; }
+        [Column("description")]
+        public string Description { get; set; }
+        [Column("cover_image")]
+        public string CoverImage { get; set; }
+        
+
+    }
+}    
+    
+ *@

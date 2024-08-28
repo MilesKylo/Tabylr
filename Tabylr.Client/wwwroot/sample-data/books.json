@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "created_at": "2023-05-01T10:30:00Z",
+    "title": "The Great Gatsby",
+    
+    "topic_id": 201,
+    "publisher_id": 301,
+    "language_id": 1,
+    "description": "A novel of decadence and excess in the Jazz Age",
+    "cover_image": "great_gatsby_cover.jpg"
+  },
+  {
+    "id": 2,
+    "created_at": "2023-05-02T14:45:00Z",
+    "title": "To Kill a Mockingbird",
+    
+    "topic_id": 202,
+    "publisher_id": 302,
+    "language_id": 1,
+    "description": "A story of racial injustice and loss of innocence in the American South",
+    "cover_image": "mockingbird_cover.jpg"
+  },
+  {
+    "id": 3,
+    "created_at": "2023-05-03T09:15:00Z",
+    "title": "1984",
+   
+    "topic_id": 203,
+    "publisher_id": 303,
+    "language_id": 1,
+    "description": "A dystopian novel set in a totalitarian society",
+    "cover_image": "1984_cover.jpg"
+  },
+  {
+    "id": 4,
+    "created_at": "2023-05-04T16:20:00Z",
+    "title": "Pride and Prejudice",
+    
+    "topic_id": 204,
+    "publisher_id": 304,
+    "language_id": 1,
+    "description": "A classic romance novel set in 19th century England",
+    "cover_image": "pride_prejudice_cover.jpg"
+  },
+  {
+    "id": 5,
+    "created_at": "2023-05-05T11:00:00Z",
+    "title": "The Catcher in the Rye",
+    
+    "topic_id": 205,
+    "publisher_id": 305,
+    "language_id": 1,
+    "description": "A coming-of-age novel featuring a teenage protagonist in New York City",
+    "cover_image": "catcher_rye_cover.jpg"
+  }
+]

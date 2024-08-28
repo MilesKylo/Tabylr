@@ -1,0 +1,35 @@
+@page "/bookpage/{Id:int}"
+@using System.Text.Json
+@using Models
+
+@inject HttpClient Http
+
+<h1>Book Details</h1>
+
+@if (book != null)
+{
+    <h2>@book.Title</h2>
+    <p>Author: @book.AuthorId</p>
+    <p>Year: @book.PublisherId</p>
+    <p>ISBN: @book.CreatedAt</p>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Book book;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var json = await Http.GetStringAsync("sample-data/books.json");
+        var books = JsonSerializer.Deserialize<List<Book>>(json);
+        book = books.FirstOrDefault(b => b.Id == Id);
+    }
+
+    
+}

@@ -1,0 +1,74 @@
+@page "/signup"
+@using System.ComponentModel.DataAnnotations
+@* @inject Supabase.Client SupabaseClient *@
+@inject NavigationManager NavigationManager
+
+<h3>Sign Up</h3>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<EditForm Model="@signupModel" OnValidSubmit="@HandleSignup">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <InputText id="email" class="form-control" @bind-Value="signupModel.Email" />
+        <ValidationMessage For="@(() => signupModel.Email)" />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="signupModel.Password" />
+        <ValidationMessage For="@(() => signupModel.Password)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</EditForm>
+
+@code {
+    private SignupModel signupModel = new SignupModel();
+    private string successMessage;
+    private string errorMessage;
+
+    private async Task HandleSignup()
+    {
+        // try
+        // {
+        //     var response = await SupabaseClient.Auth.SignUp(signupModel.Email, signupModel.Password);
+
+        //     if (response.User != null)
+        //     {
+        //         successMessage = "Sign up successful! Please check your email for verification.";
+        //         // Optionally, redirect to login or home page
+        //         // NavigationManager.NavigateTo("/login");
+        //     }
+        //     else
+        //     {
+        //         errorMessage = "Sign up failed. Please try again.";
+        //     }
+        // }
+        // catch (Exception ex)
+        // {
+        //     errorMessage = $"An error occurred: {ex.Message}";
+        // }
+    }
+
+    private class SignupModel
+    {
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; }
+    }
+}
