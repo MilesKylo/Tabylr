@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using Tabylr.Client.Models;
+using Tabylr.Client.Models.Responses;
 
 
 namespace Tabylr.Client.Services
@@ -76,10 +77,6 @@ namespace Tabylr.Client.Services
         }
     }
 
-    public class AuthResult
-    {
-        public string Token { get; set; }
-        public User User { get; set; }
-    }
+    
     
 }

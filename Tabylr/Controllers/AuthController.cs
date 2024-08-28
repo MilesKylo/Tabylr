@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tabylr.Client.Models.Requests;
+using Tabylr.Client.Models.Responses;
 using Tabylr.Services.Interfaces;
 
 namespace Tabylr.Controllers
@@ -24,13 +25,13 @@ namespace Tabylr.Controllers
                 var result = await _authService.LoginAsync(request.Email, request.Password);
                 if (result.Success)
                 {
-                    return Ok(new { Token = result.Token, User = result.User });
+                    return Ok(new AuthResult { Token = result.Token, User = result.User ,Success = true });
                 }
-                return BadRequest(new { Message = "Login failed", Error = result.ErrorMessage });
+                return BadRequest(new AuthResult  { Message = "Login Failed", ErrorMessage = result.ErrorMessage , Success = false});
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = "Login failed", Error = ex.Message });
+                return BadRequest(new AuthResult{ Message= "Login Failed", ErrorMessage = ex.Message , Success = false });
             }
         }
 
@@ -42,13 +43,13 @@ namespace Tabylr.Controllers
                 var result = await _authService.RegisterAsync(request.Email, request.Password);
                 if (result.Success)
                 {
-                    return Ok(new { Message = "Registration successful", User = result.User });
+                    return Ok(new AuthResult { Message = "Registration successful", User = result.User ,Success = true });
                 }
-                return BadRequest(new { Message = "Registration failed", Error = result.ErrorMessage });
+                return BadRequest(new AuthResult { Message = "Registration failed", ErrorMessage = result.ErrorMessage, Success=false });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = "Registration failed", Error = ex.Message });
+                return BadRequest(new AuthResult { Message = "Registration failed", ErrorMessage = ex.Message , Success = false});
             }
         }
 
@@ -60,13 +61,13 @@ namespace Tabylr.Controllers
                 var result = await _authService.LogoutAsync();
                 if (result.Success)
                 {
-                    return Ok(new { Message = "Logout successful" });
+                    return Ok(new AuthResult { Message = "Logout successful" ,Success = true});
                 }
-                return BadRequest(new { Message = "Logout failed", Error = result.ErrorMessage });
+                return BadRequest(new AuthResult { Message = "Logout failed", ErrorMessage = result.ErrorMessage ,Success=false});
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = "Logout failed", Error = ex.Message });
+                return BadRequest(new AuthResult { Message = "Logout failed", ErrorMessage = ex.Message, Success = false});
             }
         }
 

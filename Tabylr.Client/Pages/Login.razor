@@ -1,6 +1,7 @@
 @page "/login"
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Authorization
+@inject IAuthService _authService
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
@@ -37,29 +38,27 @@
 
     private async Task HandleLogin()
     {
-        // try
-        // {
-        //     var response = await SupabaseClient.Auth.SignIn(loginModel.Email, loginModel.Password);
-        //     if (response is not null){
-        //         if (response.User != null)
-        //         {
-        //             // Notify the authentication state provider of the successful login
-        //             ((CustomAuthStateProvider)AuthenticationStateProvider).NotifyUserAuthentication(loginModel.Email);
+        try
+        {
+            var response = await _authService.LoginAsync(loginModel.Email, loginModel.Password);
+            //var response = await SupabaseClient.Auth.SignIn(loginModel.Email, loginModel.Password);
+            if (response is not null){
+                if (response.User != null && response.Success)
+                {
+                    // Redirect to the home page or a protected page
+                    NavigationManager.NavigateTo("/");
+                }
+                else
+                {
+                    errorMessage = "Login failed. Please check your email and password.";
+                }
 
-        //             // Redirect to the home page or a protected page
-        //             NavigationManager.NavigateTo("/");
-        //         }
-        //         else
-        //         {
-        //             errorMessage = "Login failed. Please check your email and password.";
-        //         }
-
-        //     }
-        // }
-        // catch (Exception ex)
-        // {
-        //     errorMessage = $"An error occurred: {ex.Message}";
-        // }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
     }
 
     private class LoginModel
